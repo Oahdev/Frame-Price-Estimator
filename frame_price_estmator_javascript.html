@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frame Price Estimator</title>
 </head>
-<style>
-    #postage,#vat:hover{
-        cursor: pointer;
-    }
-</style>
 <body>
     <div class="container">
         <h1>Frame Price Estimator</h1>
@@ -23,24 +18,20 @@
                 <option value="cm">cm</option>
                 <option value="inch">inch</option>
             </select>
-        </div>
-        <br>
+        </div><br>
         <div>
             <label for="height">Photo Height:</label>
             <input type="number" name="height" id="height">
-        </div>
-        <br>
+        </div><br>
         <div>
             <label for="postage">Postage:</label>
             <input type="radio" id="economy" name="postage" value="economy" checked >Economy
             <input type="radio" id="rapid" value="rapid" name="postage" >Rapid
             <input type="radio" id="nextday" value="nextday" name="postage" >NextDay
-        </div>
-        <br>
+        </div><br>
         <div>
             <input type="checkbox" checked name="vat" id="vat">Include VAT in Price
-        </div>
-        <br>
+        </div><br>
         <input onclick="submit()" type="submit">
         <p id="result"></p>
     </div>
@@ -74,59 +65,34 @@
         area = (widthInMetre * heightInMetre);
         price = (area * area) + (100 * area) + (6);
         //getting the longest length
-        if (widthInMetre > heightInMetre) {
-            long = widthInMetre;
-        }
-        if (heightInMetre > widthInMetre){
-            long = heightInMetre;
-        }
+        if (widthInMetre > heightInMetre) {long = widthInMetre;}
+        if (heightInMetre > widthInMetre) {long = heightInMetre;}
         //the postage system
-        if (document.getElementById("economy").checked == true) {
-            postagePrice = (2 * long) + 4;
-        }
-        if (document.getElementById("rapid").checked == true) {
-            postagePrice = (3 * long) + 8;
-        }
-        if (document.getElementById("nextday").checked == true) {
-            postagePrice = (5 * long) + 12;
-        }
+        if (document.getElementById("economy").checked == true) {postagePrice = (2 * long) + 4;}
+        if (document.getElementById("rapid").checked == true) {postagePrice = (3 * long) + 8;}
+        if (document.getElementById("nextday").checked == true) {postagePrice = (5 * long) + 12;}
         function post(){
-            if (document.getElementById("economy").checked == true) {
-                return "economy";
-            }
-            if (document.getElementById("rapid").checked == true) {
-                return "rapid";
-            }
-            if (document.getElementById("nextday").checked == true) {
-                return "nextday";
-            }
+            if (document.getElementById("economy").checked == true) {return "economy";}
+            if (document.getElementById("rapid").checked == true) {return "rapid";}
+            if (document.getElementById("nextday").checked == true) {return "nextday";}
         }
         //converting to 2 decimal places
-        function finalPrice(){
-            return price.toFixed(2);
-        } 
-        function finalpostagePrice(){
-            return postagePrice.toFixed(2);
-        } 
+        finalPrice = price.toFixed(2);
+        finalpostagePrice = postagePrice.toFixed(2);
         //vat and total cost
         if (document.getElementById("vat").checked == true) {
             vatPrice = (0.2) * (postagePrice);
             total = (price + postagePrice + vatPrice);
-            function finalTotal(){
-                return total.toFixed(2);
-            }
+            finalTotal = total.toFixed(2);
             //printing the result
-            result.innerHTML = "Your frame cost £<b>"+finalPrice()+"</b> plus "+post()+" postage of £<b>"+finalpostagePrice()+"</b>, giving a total of £<b>"+finalTotal()+"</b> including <b>VAT</b>.";
+            result.innerHTML = "Your frame cost £<b>"+finalPrice+"</b> plus "+post()+" postage of £<b>"+finalpostagePrice+"</b>, giving a total of £<b>"+finalTotal+"</b> including <b>VAT</b>.";
         }
         if (document.getElementById("vat").checked == false) {
             total = (postagePrice + price);
-            function finalTotal(){
-                return total.toFixed(2);
-            }
+            finalTotal = total.toFixed(2);
             //printing the result
-            result.innerHTML = "Your frame cost £<b>"+finalPrice()+"</b> plus "+post()+" postage of £<b>"+finalpostagePrice()+"</b>, giving a total of £<b>"+finalTotal()+"</b> excluding <b>VAT</b>.";
+            result.innerHTML = "Your frame cost £<b>"+finalPrice+"</b> plus "+post()+" postage of £<b>"+finalpostagePrice+"</b>, giving a total of £<b>"+finalTotal+"</b> excluding <b>VAT</b>.";
         }
-        // result.innerHTML = postagePrice;
     }
 </script>
 </html>
