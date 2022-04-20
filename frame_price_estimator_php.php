@@ -1,14 +1,12 @@
 <?php
 $result = "";
 if(isset($_POST['submit'])){
-    
     //collecting user data 
     $width = $_POST["photo-width"];              
     $height = $_POST["photo-height"];
     if($width == "" || $height == ""){
         $result = "<b>Enter the Photo width and Photo height</b>";
     }else{
-
         // setting up the required variables   
         $postage = $_POST["postage"];
         $value = $_POST["value"];
@@ -32,17 +30,12 @@ if(isset($_POST['submit'])){
         // getting the longest length
         $long = max($widthInMetre,$heightInMetre);
         // the postage system
-        if ($postage == "economy") {
-            $postagePrice = (2 * $long) + 4;
-        }elseif($postage == "rapid") {
-            $postagePrice = (3 * $long) + 8;
-        }elseif($postage == "nextday") {
-            $postagePrice = (5 * $long) + 12;
-        }
+        if ($postage == "economy") {$postagePrice = (2 * $long) + 4;}
+        elseif($postage == "rapid") {$postagePrice = (3 * $long) + 8;}
+        elseif($postage == "nextday") {$postagePrice = (5 * $long) + 12;}
         // conveting to 2 decimal place
         $price = number_format(floatval($price),2,".","");
         $postagePrice = number_format(floatval($postagePrice),2,".","");
-        
         // vat value and total cost
         if (isset($_POST["vat"])) {
             $vat = $_POST["vat"];
@@ -53,9 +46,9 @@ if(isset($_POST['submit'])){
             // printing the result
             $result = "Your frame cost <b>£$price</b> plus <b>".strval($postage)."</b> postage of <b>£$postagePrice</b>, giving a total of <b>£$total</b> including VAT.";
         }else{
-            // printing the result
             $total = ($postagePrice + $price);
             $total = number_format(floatval($total),2,".","");
+            // printing the result
             $result =  "Your frame cost <b>£$price</b> plus <b>".strval($postage)."</b> postage of <b>£$postagePrice</b>, giving a total of <b>£$total</b> excluding VAT.";
         }
     }
@@ -75,7 +68,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <div class="container">
-        <h2>Frame Price Estimator</h2>
+        <h1>Frame Price Estimator</h1>
         <p>Please enter your photo sizes to get a framing cost estimate.</p>
         <form action="frame_price_estimator_php.php" method="post" >
             
@@ -104,8 +97,3 @@ if(isset($_POST['submit'])){
     </div>
 </body>
 </html>
-
-
-
-
-
