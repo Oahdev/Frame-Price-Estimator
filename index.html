@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame Price Estimator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Frame Price Estimator</h1>
+        <p>Please enter your photo sizes to get a framing cost estimate.</p>
+        <div>
+            <label for="width">Photo Width:</label>
+            <input type="number" name="width" id="width">
+            <select id="option">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="inch">inch</option>
+            </select>
+        </div><br>
+        <div>
+            <label for="height">Photo Height:</label>
+            <input type="number" name="height" id="height">
+        </div><br>
+        <div>
+            <label for="postage">Postage:</label>
+            <input type="radio" id="economy" name="postage" value="economy" checked >Economy
+            <input type="radio" id="rapid" value="rapid" name="postage" >Rapid
+            <input type="radio" id="nextday" value="nextday" name="postage" >NextDay
+        </div><br>
+        <div>
+            <input type="checkbox" checked name="vat" id="vat">Include VAT in Price
+        </div><br>
+        <input onclick="submit()" type="submit">
+        <p id="result"></p>
+    </div>
+</body>
+<script src="./frame_price_estmator_javascript.js"></script>
+</html>
